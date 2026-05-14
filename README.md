@@ -6,11 +6,11 @@ O SaúdeJá Ferraz é uma iniciativa tecnológica e colaborativa criada com o ob
 
 O projeto nasceu após uma experiência real vivenciada durante atendimento no Hospital Regional de Ferraz de Vasconcelos, evidenciando problemas como:
 
-- superlotação;
-- filas extensas;
-- ausência de informações em tempo real;
-- deslocamentos desnecessários;
-- dificuldade de atendimento para idosos, gestantes e crianças.
+* superlotação;
+* filas extensas;
+* ausência de informações em tempo real;
+* deslocamentos desnecessários;
+* dificuldade de atendimento para idosos, gestantes e crianças.
 
 ---
 
@@ -18,12 +18,12 @@ O projeto nasceu após uma experiência real vivenciada durante atendimento no H
 
 O objetivo do sistema é fornecer uma plataforma inteligente de apoio ao atendimento público de saúde através de:
 
-- triagem inteligente pré-atendimento;
-- painel público de filas;
-- sistema colaborativo de lotação;
-- informações em tempo real;
-- direcionamento para unidades adequadas;
-- apoio operacional à saúde pública municipal.
+* triagem inteligente pré-atendimento;
+* painel público de filas;
+* sistema colaborativo de lotação;
+* informações em tempo real;
+* direcionamento para unidades adequadas;
+* apoio operacional à saúde pública municipal.
 
 ---
 
@@ -35,11 +35,11 @@ A primeira versão do projeto será composta pelos seguintes módulos:
 
 Fluxo de perguntas básicas para orientar o cidadão sobre qual unidade procurar:
 
-- UBS;
-- UPA;
-- Hospital Regional;
-- emergência;
-- farmácia popular.
+* UBS;
+* UPA;
+* Hospital Regional;
+* emergência;
+* farmácia popular.
 
 > IMPORTANTE:
 > O sistema NÃO realiza diagnóstico médico.
@@ -51,11 +51,11 @@ Fluxo de perguntas básicas para orientar o cidadão sobre qual unidade procurar
 
 Painel público com:
 
-- tempo médio de espera;
-- lotação da unidade;
-- especialidades disponíveis;
-- situação da unidade;
-- histórico de atualização.
+* tempo médio de espera;
+* lotação da unidade;
+* especialidades disponíveis;
+* situação da unidade;
+* histórico de atualização.
 
 ---
 
@@ -63,13 +63,14 @@ Painel público com:
 
 Os próprios cidadãos poderão informar:
 
-- lotação;
-- tempo de espera;
-- disponibilidade médica;
-- falta de medicamentos;
-- atendimento pediátrico.
+* lotação;
+* tempo de espera;
+* disponibilidade médica;
+* falta de medicamentos;
+* atendimento pediátrico.
 
 Inspirado no conceito:
+
 > "Waze da Saúde"
 
 ---
@@ -78,44 +79,148 @@ Inspirado no conceito:
 
 ## Backend
 
-- PHP 8+
-- Laravel 12
-- MySQL 8
-- Redis
-- Laravel Sanctum
-- Laravel Reverb (WebSocket)
+* PHP 8.3+
+* Laravel 12
+* MySQL 8
+* Redis
+* Laravel Sanctum
+* Laravel Reverb
+* Laravel Telescope
+* L5 Swagger / OpenAPI
+* Laravel Pint
+* Predis
 
 ---
 
 ## Frontend (Projeto Futuro)
 
-- Angular
-- Angular PWA
-- Tailwind CSS
-- Firebase Cloud Messaging (Push Notifications)
+* Angular
+* Angular PWA
+* Tailwind CSS
+* RxJS
+* Angular Signals
+* Firebase Cloud Messaging
 
 ---
 
-# Arquitetura Inicial
+# Arquitetura do Backend
 
-O backend será estruturado em formato modular visando:
+O backend está sendo desenvolvido utilizando arquitetura modular visando:
 
-- escalabilidade;
-- manutenção facilitada;
-- separação de responsabilidades;
-- integração futura com órgãos públicos.
+* escalabilidade;
+* manutenção facilitada;
+* separação de responsabilidades;
+* integração futura com órgãos públicos;
+* padronização da API;
+* documentação automática.
 
-Estrutura planejada:
+---
+
+# Estrutura Atual da Aplicação
 
 ```txt
 app/
-├── Http/
-├── Services/
-├── Repositories/
-├── Exceptions/
 ├── DTOs/
-├── Actions/
+├── Enums/
+├── Exceptions/
+├── Helpers/
+├── Http/
+├── OpenApi/
+├── Repositories/
+├── Services/
 ├── Traits/
+```
+
+---
+
+# Estrutura de Responsabilidades
+
+## Controllers
+
+Responsáveis por:
+
+* receber requisições;
+* validar entradas;
+* retornar respostas padronizadas.
+
+---
+
+## Services
+
+Responsáveis por:
+
+* regras de negócio;
+* transações;
+* integrações;
+* processamento principal.
+
+---
+
+## Repositories
+
+Responsáveis por:
+
+* acesso ao banco de dados;
+* queries;
+* persistência.
+
+---
+
+## DTOs
+
+Responsáveis por:
+
+* transporte estruturado de dados;
+* desacoplamento entre camadas.
+
+---
+
+## Enums
+
+Responsáveis por:
+
+* padronização de valores;
+* redução de strings mágicas;
+* melhoria da manutenção.
+
+---
+
+## Traits
+
+Responsáveis por:
+
+* reutilização de código;
+* padronização de respostas;
+* comportamentos compartilhados.
+
+---
+
+# Padrão de Resposta da API
+
+Todas as respostas da API seguem padrão único:
+
+## Sucesso
+
+```json
+{
+  "success": true,
+  "message": "Operação realizada com sucesso.",
+  "data": [],
+  "errors": null
+}
+```
+
+---
+
+## Erro
+
+```json
+{
+  "success": false,
+  "message": "Erro ao processar operação.",
+  "data": null,
+  "errors": []
+}
 ```
 
 ---
@@ -124,10 +229,10 @@ app/
 
 O projeto seguirá padrões rígidos de qualidade de código visando:
 
-- estabilidade;
-- legibilidade;
-- rastreabilidade;
-- manutenção futura.
+* estabilidade;
+* legibilidade;
+* rastreabilidade;
+* manutenção futura.
 
 ---
 
@@ -137,10 +242,10 @@ O projeto seguirá padrões rígidos de qualidade de código visando:
 
 Toda operação crítica deverá possuir:
 
-- try/catch;
-- logs;
-- mensagens padronizadas;
-- rollback em caso de falha.
+* try/catch;
+* logs;
+* mensagens padronizadas;
+* rollback em caso de falha.
 
 ---
 
@@ -169,10 +274,53 @@ try {
 
 Os comentários deverão:
 
-- ser escritos em Português do Brasil;
-- focar na regra de negócio;
-- auxiliar manutenção futura;
-- evitar comentários redundantes.
+* ser escritos em Português do Brasil;
+* focar na regra de negócio;
+* auxiliar manutenção futura;
+* evitar comentários redundantes.
+
+---
+
+# Documentação Swagger
+
+A API possui documentação OpenAPI/Swagger integrada.
+
+## URL local
+
+```txt
+http://127.0.0.1:8000/api/documentation
+```
+
+---
+
+# Ferramentas de Desenvolvimento
+
+## Laravel Telescope
+
+Monitoramento de:
+
+* requests;
+* exceptions;
+* queries;
+* jobs;
+* logs.
+
+---
+
+## Laravel Pint
+
+Padronização automática do código PHP.
+
+---
+
+## Redis
+
+Utilizado para:
+
+* cache;
+* filas;
+* websocket;
+* tempo real.
 
 ---
 
@@ -180,38 +328,43 @@ Os comentários deverão:
 
 O projeto será preparado para disponibilização de API pública visando integração com:
 
-- prefeitura;
-- observatórios públicos;
-- dashboards municipais;
-- parceiros;
-- pesquisas acadêmicas;
-- outras aplicações públicas.
+* prefeitura;
+* observatórios públicos;
+* dashboards municipais;
+* parceiros;
+* pesquisas acadêmicas;
+* outras aplicações públicas.
 
 ---
 
 # Roadmap
 
 ## Fase 1
-- Estrutura Laravel
-- API REST
-- Cadastro de unidades
-- Triagem simples
-- Painel básico
+
+* Estrutura Laravel
+* API REST
+* Swagger/OpenAPI
+* Cadastro de unidades
+* Triagem simples
+* Painel básico
 
 ## Fase 2
-- Relatos colaborativos
-- Sistema de reputação
-- WebSocket em tempo real
+
+* Relatos colaborativos
+* Sistema de reputação
+* WebSocket em tempo real
 
 ## Fase 3
-- Geolocalização
-- Mapa de calor
-- Alertas epidemiológicos
+
+* Geolocalização
+* Mapa de calor
+* Alertas epidemiológicos
 
 ## Fase 4
-- Integração municipal
-- API pública
-- Expansão regional
+
+* Integração municipal
+* API pública
+* Expansão regional
 
 ---
 
@@ -259,8 +412,6 @@ php artisan key:generate
 
 ## Configurar banco de dados no .env
 
-Exemplo:
-
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -280,6 +431,22 @@ php artisan migrate
 
 ---
 
+## Limpar cache
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+## Gerar documentação Swagger
+
+```bash
+php artisan l5-swagger:generate
+```
+
+---
+
 ## Subir servidor local
 
 ```bash
@@ -290,7 +457,7 @@ php artisan serve
 
 # Licença
 
-Projeto open-source desenvolvido com objetivo social e educacional.
+Projeto open-source desenvolvido com objetivo social, educacional e tecnológico.
 
 ---
 
