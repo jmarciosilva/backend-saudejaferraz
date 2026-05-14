@@ -17,7 +17,6 @@ use OpenApi\Attributes as OA;
  * | - health checks futuros.
  * |
  */
-
 #[OA\Get(
     path: '/api/health',
     summary: 'Verifica status da API',
