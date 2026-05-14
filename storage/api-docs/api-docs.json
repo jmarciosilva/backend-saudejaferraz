@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API SaúdeJá Ferraz",
+        "description": "API pública da plataforma SaúdeJá Ferraz",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Servidor Local"
+        }
+    ],
+    "paths": {
+        "/api/health": {
+            "get": {
+                "tags": [
+                    "Health Check"
+                ],
+                "summary": "Verifica status da API",
+                "description": "Endpoint responsável por validar se a API está online.",
+                "operationId": "006300e23a30b7a78bd93c51057d3c93",
+                "responses": {
+                    "200": {
+                        "description": "API online"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Health Check",
+            "description": "Health Check"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Autenticação via Bearer Token",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "sanctum": []
+        }
+    ]
+}
